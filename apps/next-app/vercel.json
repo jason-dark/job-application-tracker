@@ -1,0 +1,7 @@
+{
+  "framework": "nextjs",
+  "outputDirectory": "dist/apps/next-app/.next",
+  "installCommand": "yarn install --frozen-lockfile",
+  "buildCommand": "npx nx build next-app",
+  "cleanUrls": true
+}
