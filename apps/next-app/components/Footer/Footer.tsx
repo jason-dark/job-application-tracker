@@ -20,7 +20,7 @@ interface FooterProps extends AppShellFooterProps {}
 
 export const Footer = ({ ...props }: FooterProps) => {
   return (
-    <AppShell.Footer withBorder={false} {...props}>
+    <AppShell.Footer withBorder={false} zIndex={2} {...props}>
       <Container h='100%'>
         <Flex align='center' justify='space-between' h='100%'>
           <Anchor {...anchorProps} href='https://www.linkedin.com/in/jason-dark/'>

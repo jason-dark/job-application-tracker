@@ -6,7 +6,6 @@ interface DataTableProps extends TableProps {
 }
 
 export const DataTable = ({ jobs, ...props }: DataTableProps) => {
-  console.log(jobs.map((job) => job.id));
   return (
     <Table {...props}>
       <Table.Thead>

@@ -6,13 +6,14 @@ import { Footer } from 'components/Footer';
 import { DataTable } from 'components/DataTable';
 import { v4 as uuidv4 } from 'uuid';
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
+import { AuthModal } from 'components/AuthModal';
 
 export default function Home() {
   return (
     <AppShell header={{ height: 60 }} footer={{ height: 60 }} padding='md'>
       <Header />
       <AppShell.Main bg='dark.8'>
-        <Container>
+        <Container pos='relative'>
           <DataTable
             jobs={[...Array(16)].map(() => ({
               id: uuidv4(),
@@ -25,6 +26,7 @@ export default function Home() {
             }))}
           />
         </Container>
+        <AuthModal />
       </AppShell.Main>
       <Footer />
     </AppShell>
