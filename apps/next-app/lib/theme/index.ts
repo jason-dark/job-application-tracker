@@ -9,7 +9,11 @@ import {
 import { themeToVars } from '@mantine/vanilla-extract';
 
 export const themeOverride = createTheme({
-  primaryColor: 'orange',
+  primaryColor: 'indigo',
+  fontFamily: 'Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;',
+  headings: {
+    fontWeight: '700',
+  },
   other: {
     maxApplicationWidth: 1440,
   },
