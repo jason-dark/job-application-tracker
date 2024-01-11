@@ -1,19 +1,16 @@
 {
   "version": 2,
-  "outputDirectory": "dist/apps/nest-api/",
-  "installCommand": "yarn install --frozen-lockfile",
-  "buildCommand": "npx nx build nest-api",
   "builds": [
     {
-      "src": "apps/nest-api/src/main.ts",
+      "src": "src/main.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/apps/nest-api/main.js",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE"]
+      "dest": "src/main.ts",
+      "methods": ["GET", "POST", "PATCH", "PUT", "DELETE"]
     }
   ]
 }
