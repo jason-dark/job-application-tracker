@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@job-application-tracker/types": ["libs/types/src/index.ts"]
+      "@job-application-tracker/constants": ["libs/constants/src/index.ts"],
+      "@job-application-tracker/types": ["libs/types/src/index.ts"],
+      "@job-application-tracker/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

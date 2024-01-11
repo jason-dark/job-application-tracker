@@ -5,6 +5,7 @@ import {
   DEFAULT_THEME,
   MantineBreakpointsValues,
   mergeMantineTheme,
+  Container,
 } from '@mantine/core';
 import { themeToVars } from '@mantine/vanilla-extract';
 
@@ -16,6 +17,13 @@ export const themeOverride = createTheme({
   },
   other: {
     maxApplicationWidth: 1440,
+  },
+  components: {
+    Container: Container.extend({
+      defaultProps: {
+        size: 'xl',
+      },
+    }),
   },
 });
 

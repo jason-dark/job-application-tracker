@@ -11,24 +11,30 @@ export interface Database {
     Tables: {
       jobs: {
         Row: {
+          company: string
           created_at: string
-          hyperlink: string | null
+          hyperlink: string
           id: string
-          job_title: string | null
+          job_title: string
+          status: string | null
           user_id: string
         }
         Insert: {
+          company?: string
           created_at?: string
-          hyperlink?: string | null
+          hyperlink?: string
           id?: string
-          job_title?: string | null
+          job_title?: string
+          status?: string | null
           user_id?: string
         }
         Update: {
+          company?: string
           created_at?: string
-          hyperlink?: string | null
+          hyperlink?: string
           id?: string
-          job_title?: string | null
+          job_title?: string
+          status?: string | null
           user_id?: string
         }
         Relationships: []

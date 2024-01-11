@@ -4,7 +4,7 @@ interface HeaderProps extends AppShellHeaderProps {}
 
 export const Header = ({ ...props }: HeaderProps) => {
   return (
-    <AppShell.Header {...props}>
+    <AppShell.Header withBorder={false} {...props}>
       <Container h='100%'>
         <Flex align='center' h='100%'>
           <Title order={1} c='indigo' fz='lg'>

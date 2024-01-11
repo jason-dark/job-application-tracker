@@ -20,7 +20,10 @@
     "types": ["jest", "node"],
     "paths": {
       "components/*": ["components/*"],
-      "lib/*": ["lib/*"]
+      "lib/*": ["lib/*"],
+      "@job-application-tracker/constants": ["../../libs/constants/src/index.ts"],
+      "@job-application-tracker/types": ["../../libs/types/src/index.ts"],
+      "@job-application-tracker/utils": ["../../libs/utils/src/index.ts"]
     }
   },
   "include": [

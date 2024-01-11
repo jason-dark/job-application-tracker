@@ -8,4 +8,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/next-app',
+  setupFiles: ['<rootDir>/lib/testing/setup-tests.js'],
 };
