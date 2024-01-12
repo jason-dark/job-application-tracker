@@ -1,15 +1,43 @@
-import { render } from 'lib/testing/test-utils';
-
+import { render, screen } from 'lib/testing/test-utils';
 import { Footer } from './Footer';
 import { AppShell } from '@mantine/core';
 
 describe('Footer', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
+  it('renders the footer component', () => {
+    const element = render(
       <AppShell>
         <Footer />
       </AppShell>
     );
-    expect(baseElement).toBeTruthy();
+
+    // Assert that the component is rendered
+    expect(element).toBeDefined();
+  });
+
+  it('renders the LinkedIn link', () => {
+    render(
+      <AppShell>
+        <Footer />
+      </AppShell>
+    );
+
+    // Assert that the LinkedIn link is rendered with the correct href
+    const linkedinLink = screen.getByText('Jason Dark');
+    expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/in/jason-dark/');
+  });
+
+  it('renders the GitHub link', () => {
+    render(
+      <AppShell>
+        <Footer />
+      </AppShell>
+    );
+
+    // Assert that the GitHub link is rendered with the correct href
+    const githubLink = screen.getByText('GitHub project');
+    expect(githubLink).toHaveAttribute(
+      'href',
+      'https://github.com/jason-dark/job-application-tracker'
+    );
   });
 });

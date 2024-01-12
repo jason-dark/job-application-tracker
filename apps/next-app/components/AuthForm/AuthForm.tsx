@@ -1,6 +1,6 @@
 import { Box, BoxProps, Button, TextInput, Title } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { supabase } from 'lib/supabase-client';
+import { useForm, isEmail } from '@mantine/form';
+import { Supabase } from 'lib/supabase-client';
 import { useCallback, useState } from 'react';
 
 interface AuthFormProps extends BoxProps {
@@ -15,7 +15,7 @@ export const AuthForm = ({ onSubmit, ...props }: AuthFormProps) => {
       email: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Please enter a valid email'),
+      email: isEmail('Please enter a valid email'),
     },
   });
 
@@ -23,7 +23,7 @@ export const AuthForm = ({ onSubmit, ...props }: AuthFormProps) => {
     async (email: string) => {
       form.clearErrors();
       setLoading(true);
-      const { error } = await supabase.auth.signInWithOtp({
+      const { error } = await Supabase.getInstance().client.auth.signInWithOtp({
         email,
         options: {
           emailRedirectTo: window.location.origin,
@@ -46,12 +46,7 @@ export const AuthForm = ({ onSubmit, ...props }: AuthFormProps) => {
         onSubmit={form.onSubmit((values) => sendMagicLink(values.email))}
         mt='xl'
       >
-        <TextInput
-          label='Email'
-          type='email'
-          placeholder='your@email.com'
-          {...form.getInputProps('email')}
-        />
+        <TextInput label='Email' placeholder='your@email.com' {...form.getInputProps('email')} />
         <Button type='submit' w='100%' mt='xs' loading={loading}>
           Continue
         </Button>

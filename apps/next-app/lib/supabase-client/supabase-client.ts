@@ -1,6 +1,26 @@
-import { createClient } from '@supabase/supabase-js';
+import { SupabaseClient, createClient } from '@supabase/supabase-js';
+import { Database } from '@job-application-tracker/types';
 
-export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
-  process.env.NEXT_PUBLIC_SUPABASE_KEY ?? ''
-);
+export class Supabase {
+  private static instance: Supabase | null;
+  public client: SupabaseClient<Database, 'public'>;
+
+  private constructor() {
+    this.client = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL ?? '',
+      process.env.NEXT_PUBLIC_SUPABASE_KEY ?? ''
+    );
+  }
+
+  public static getInstance(): Supabase {
+    if (!Supabase.instance) {
+      Supabase.instance = new Supabase();
+    }
+
+    return Supabase.instance;
+  }
+
+  public static resetInstance(): void {
+    Supabase.instance = null;
+  }
+}

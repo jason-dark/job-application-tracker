@@ -15,7 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <ColorSchemeScript defaultColorScheme='dark' />
       </head>
-      <body>
+      {/* This site is fully staticly generated so suppressing hydration warnings is fine and makes the
+      console less noisy in dev */}
+      <body suppressHydrationWarning={true}>
         <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
           <MantineProvider defaultColorScheme='dark' theme={theme}>
             {children}
