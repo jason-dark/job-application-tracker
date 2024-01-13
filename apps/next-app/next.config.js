@@ -12,6 +12,9 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  experimental: {
+    esmExternals: 'loose',
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.externals.push({
