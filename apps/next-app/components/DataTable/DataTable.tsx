@@ -24,6 +24,7 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
         job_title: '',
         hyperlink: '',
         status: '',
+        created_at: new Date().toISOString(),
       }),
     [optimisticCreateJob]
   );
@@ -35,10 +36,10 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
           <Table.Thead>
             <Table.Tr>
               <Table.Th w='10%'>Date added</Table.Th>
-              <Table.Th w='15%'>Company</Table.Th>
-              <Table.Th w='25%'>Job title</Table.Th>
-              <Table.Th w='20%'>Link</Table.Th>
+              <Table.Th w='20%'>Company</Table.Th>
+              <Table.Th w='20%'>Job title</Table.Th>
               <Table.Th w='20%'>Status</Table.Th>
+              <Table.Th w='20%'>Link</Table.Th>
               <Table.Th w='10%'>Actions</Table.Th>
             </Table.Tr>
           </Table.Thead>

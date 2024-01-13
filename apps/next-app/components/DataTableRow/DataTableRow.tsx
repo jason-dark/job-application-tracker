@@ -1,9 +1,18 @@
-import { ActionIcon, Group, Table, TableTrProps, TextInput, Tooltip, rem } from '@mantine/core';
+import {
+  ActionIcon,
+  Box,
+  Group,
+  Table,
+  TableTrProps,
+  TextInput,
+  Tooltip,
+  rem,
+} from '@mantine/core';
 import { Job, UpdateJobPayload } from '@job-application-tracker/types';
 import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
 import { useForm } from '@mantine/form';
 import { debounce } from 'lodash';
-import { IconTrashX } from '@tabler/icons-react';
+import { IconExternalLink, IconExternalLinkOff, IconTrashX } from '@tabler/icons-react';
 
 interface DataTableRowProps extends TableTrProps {
   job: Job;
@@ -56,18 +65,27 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
       <Table.Td>
         <TextInput
           variant='unstyled'
-          name='hyperlink'
-          placeholder='Enter a link...'
-          {...form.getInputProps('hyperlink')}
-        />
-      </Table.Td>
-      <Table.Td>
-        <TextInput
-          variant='unstyled'
           name='status'
           placeholder='Enter a status...'
           {...form.getInputProps('status')}
         />
+      </Table.Td>
+      <Table.Td>
+        <Group>
+          <ActionIcon variant='light' size='xs' disabled={!form.values.hyperlink}>
+            <Box
+              component={form.values.hyperlink ? IconExternalLink : IconExternalLinkOff}
+              stroke={1}
+              style={{ height: rem(18) }}
+            />
+          </ActionIcon>
+          <TextInput
+            variant='unstyled'
+            name='hyperlink'
+            placeholder='Enter a link...'
+            {...form.getInputProps('hyperlink')}
+          />
+        </Group>
       </Table.Td>
       <Table.Td>
         <Group>
