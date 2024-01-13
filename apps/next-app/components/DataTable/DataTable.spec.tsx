@@ -1,4 +1,5 @@
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
+import { SamplerArray } from '@job-application-tracker/utils';
 import { render } from 'lib/testing/test-utils';
 import * as ReactQuery from 'react-query';
 
@@ -15,8 +16,8 @@ describe('DataTable', () => {
       <DataTable
         jobs={[...Array(16)].map((_, i) => ({
           id: i.toString(),
-          company: COMPANIES.sample(),
-          job_title: JOB_TITLES.sample(),
+          company: new SamplerArray(...COMPANIES).sample(),
+          job_title: new SamplerArray(...JOB_TITLES).sample(),
           created_at: new Date().toISOString(),
           hyperlink: '',
           status: 'applied',

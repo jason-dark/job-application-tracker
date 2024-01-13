@@ -1,4 +1,4 @@
-import { Anchor, AppShell, AppShellFooterProps, Box, Container, Group,rem } from '@mantine/core';
+import { Anchor, AppShell, AppShellFooterProps, Box, Container, Group, rem } from '@mantine/core';
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import { theme } from 'lib/theme';
 
@@ -20,7 +20,7 @@ interface FooterProps extends AppShellFooterProps {}
 
 export const Footer = ({ ...props }: FooterProps) => {
   return (
-    <AppShell.Footer withBorder={false} zIndex={2} {...props}>
+    <AppShell.Footer withBorder={false} zIndex={2} data-testid='footer' {...props}>
       <Container h='100%'>
         <Group h='100%' justify='flex-start' gap='lg'>
           <Anchor {...anchorProps} href='https://www.linkedin.com/in/jason-dark/'>

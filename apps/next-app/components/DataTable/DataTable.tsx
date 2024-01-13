@@ -1,5 +1,5 @@
 import { Job } from '@job-application-tracker/types';
-import { Box, BoxProps, Button, Card, rem,Table, Title } from '@mantine/core';
+import { Box, BoxProps, Button, Card, rem, Table, Title } from '@mantine/core';
 import { IconCirclePlus } from '@tabler/icons-react';
 import { DataTableRow } from 'components/DataTableRow';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -30,7 +30,7 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
   );
 
   return (
-    <Box {...props}>
+    <Box data-testid='data-table' {...props}>
       <Table>
         <Table.Thead>
           <Table.Tr>
