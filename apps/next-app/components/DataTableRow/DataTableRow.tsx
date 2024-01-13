@@ -1,9 +1,15 @@
-import { ActionIcon, Box, Group, Table, TextInput, Tooltip, rem } from '@mantine/core';
+import { ActionIcon, Box, Group, Loader, Table, TextInput, Tooltip, rem } from '@mantine/core';
 import { Job, UpdateJobPayload } from '@job-application-tracker/types';
 import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
 import { useForm } from '@mantine/form';
 import { debounce } from 'lodash';
-import { IconExternalLink, IconExternalLinkOff, IconTrashX } from '@tabler/icons-react';
+import {
+  IconCircleCheck,
+  IconExternalLink,
+  IconExternalLinkOff,
+  IconTrashX,
+} from '@tabler/icons-react';
+import { theme } from 'lib/theme';
 
 interface DataTableRowProps {
   job: Job;
@@ -15,7 +21,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
   const optimisticJobUpdate = useOptimisticUpdateJob();
   const debouncedUpdate = debounce(
     (updatedJob: UpdateJobPayload) => optimisticJobUpdate.mutate(updatedJob),
-    1000
+    500
   );
 
   const form = useForm({
@@ -87,7 +93,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
         </Group>
       </Table.Td>
       <Table.Td>
-        <Group>
+        <Group justify='space-between'>
           <Tooltip label='Delete' color='dark.9' withArrow fz='xs'>
             <ActionIcon
               variant='light'
@@ -97,6 +103,22 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
             >
               <IconTrashX stroke={1} style={{ height: rem(20) }} />
             </ActionIcon>
+          </Tooltip>
+          <Tooltip
+            label={optimisticJobUpdate.isLoading ? 'Saving' : 'Saved'}
+            color='dark.9'
+            withArrow
+            fz='xs'
+          >
+            {optimisticJobUpdate.isLoading ? (
+              <Loader size={rem(18)} mr={rem(3)} />
+            ) : (
+              <IconCircleCheck
+                stroke={1}
+                color={theme.colors.dark[3]}
+                style={{ height: rem(24) }}
+              />
+            )}
           </Tooltip>
         </Group>
       </Table.Td>
