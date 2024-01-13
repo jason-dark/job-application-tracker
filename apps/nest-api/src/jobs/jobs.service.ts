@@ -4,20 +4,21 @@ import {
   RequestWithUser,
   UpdateJobPayload,
 } from '@job-application-tracker/types';
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, Logger } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 
 import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
 export class JobsService {
+  private readonly logger = new Logger(JobsService.name);
+
   constructor(
     @Inject(REQUEST) private readonly request: RequestWithUser,
     private readonly supabase: SupabaseService
   ) {}
 
   async getAllJobsForUser(): Promise<Job[]> {
-    console.log('userId:', this.request.user.sub);
     const userId = this.request?.user?.sub;
     const { data, error } = await this.supabase
       .getClient()
@@ -27,31 +28,32 @@ export class JobsService {
       .order('created_at', { ascending: true });
 
     if (error || !data.length) {
+      this.logger.error(`Unable to load jobs for ${this.request.user.email}`);
       return [];
     }
 
+    this.logger.log(`Loaded jobs for ${this.request.user.email}`);
     return data;
   }
 
   async createJob(job: CreateJobPayload): Promise<Job> {
-    console.log('userId:', this.request.user.sub);
-    const { data, error } = await this.supabase
-      .getClient()
-      .from('jobs')
-      .insert({ ...job, user_id: this.request.user.sub })
-      .select();
+    const newJob = { ...job, user_id: this.request.user.sub };
+    const { data, error } = await this.supabase.getClient().from('jobs').insert(newJob).select();
 
     if (error) {
-      console.log(error);
+      this.logger.error(
+        `Unable to create job for ${this.request.user.email}: ${error.message}. ${newJob}`
+      );
       throw new HttpException('Bad request', HttpStatus.BAD_REQUEST);
     }
 
+    this.logger.log(
+      `Created new job for ${this.request.user.email}: ${JSON.stringify(data, null, 4)}`
+    );
     return data[0];
   }
 
   async updateJob(jobUpdate: UpdateJobPayload): Promise<Job> {
-    console.log('userId:', this.request.user.sub);
-
     // Explicitly only set these fields
     const update = {};
     ['company', 'job_title', 'hyperlink', 'status'].forEach((field) => {
@@ -59,8 +61,6 @@ export class JobsService {
         update[field] = jobUpdate[field].trim();
       }
     });
-
-    console.log({ update });
 
     const { data, error } = await this.supabase
       .getClient()
@@ -71,15 +71,19 @@ export class JobsService {
       .select();
 
     if (error) {
-      console.log(error);
+      this.logger.error(
+        `Unable to update job for ${this.request.user.email}: ${error.message}. ${update}`
+      );
       throw new HttpException('Bad request', HttpStatus.BAD_REQUEST);
     }
 
+    this.logger.log(
+      `Updated job for ${this.request.user.email}: ${JSON.stringify(data, null, 4)}}`
+    );
     return data[0];
   }
 
   async deleteJobById(id: string): Promise<void> {
-    console.log('userId:', this.request.user.sub);
     const { error } = await this.supabase
       .getClient()
       .from('jobs')
@@ -88,8 +92,11 @@ export class JobsService {
       .eq('user_id', this.request.user.sub);
 
     if (error) {
-      console.log(error);
+      this.logger.error(
+        `Unable to delete job for ${this.request.user.email}: ${error.message}. Job id: ${id}`
+      );
       throw new HttpException('Bad request', HttpStatus.BAD_REQUEST);
     }
+    this.logger.log(`Deleted job with id ${id} for ${this.request.user.email}`);
   }
 }

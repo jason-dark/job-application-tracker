@@ -5,7 +5,8 @@ import { REQUEST } from '@nestjs/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
 
-@Injectable({ scope: Scope.REQUEST })
+// A single instance of the provider is shared across the entire application. We use a service account for auth so we don't need to worry about auth per request
+@Injectable({ scope: Scope.DEFAULT })
 export class SupabaseService {
   private readonly logger = new Logger(SupabaseService.name);
   private clientInstance: SupabaseClient<Database>;
@@ -16,13 +17,12 @@ export class SupabaseService {
   ) {}
 
   getClient() {
-    this.logger.log('getting supabase client...');
     if (this.clientInstance) {
-      this.logger.log(`client exists - returning for current ${Scope.REQUEST}`);
+      this.logger.log(`Supabase client already exists - returning existing client`);
       return this.clientInstance;
     }
 
-    this.logger.log(`initialising new supabase client for new ${Scope.REQUEST}`);
+    this.logger.log(`Initialising and returning new Supabase client`);
 
     this.clientInstance = createClient<Database>(
       this.configService.get('NEXT_PUBLIC_SUPABASE_URL'),
