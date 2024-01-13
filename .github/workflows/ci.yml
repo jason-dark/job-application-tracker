@@ -1,11 +1,14 @@
 name: CI
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
       - master
 
 jobs:
-  format_and_test:
+  lint_and_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,4 +18,5 @@ jobs:
           node-version: 20
           cache: 'yarn'
       - run: yarn install --frozen-lockfile --non-interactive
+      - run: npx nx run-many --target=lint -all --parallel --max-parallel=3
       - run: npx nx run-many --target=test --all --parallel --max-parallel=3
