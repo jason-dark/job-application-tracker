@@ -1,6 +1,6 @@
 import { Table } from '@mantine/core';
 import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
-import { fireEvent,render, screen } from 'lib/testing/test-utils';
+import { fireEvent, render, screen } from 'lib/testing/test-utils';
 
 import { DataTableRow } from './DataTableRow';
 

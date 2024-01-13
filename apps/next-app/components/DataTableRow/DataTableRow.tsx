@@ -1,5 +1,5 @@
 import { Job, UpdateJobPayload } from '@job-application-tracker/types';
-import { ActionIcon, Box, Group, Loader, rem,Table, TextInput, Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Group, Loader, rem, Table, TextInput, Tooltip } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import {
   IconCircleCheck,
@@ -105,12 +105,12 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
             </ActionIcon>
           </Tooltip>
           <Tooltip
-            label={optimisticJobUpdate.isLoading ? 'Saving' : 'Saved'}
+            label={optimisticJobUpdate?.isLoading ? 'Saving' : 'Saved'}
             color='dark.9'
             withArrow
             fz='xs'
           >
-            {optimisticJobUpdate.isLoading ? (
+            {optimisticJobUpdate?.isLoading ? (
               <Loader size={rem(18)} mr={rem(3)} />
             ) : (
               <IconCircleCheck
