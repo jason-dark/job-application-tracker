@@ -1,6 +1,7 @@
 'use client';
 
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
+import { SamplerArray } from '@job-application-tracker/utils';
 import { AppShell, Container, Loader } from '@mantine/core';
 import { AuthedHome } from 'components/AuthedHome';
 import { AuthModal } from 'components/AuthModal';
@@ -11,8 +12,8 @@ import { useSupabase } from 'lib/hooks';
 
 const randomJobs = [...Array(20)].map((_, i) => ({
   id: i.toString(),
-  company: COMPANIES.sample(),
-  job_title: JOB_TITLES.sample(),
+  company: new SamplerArray(...COMPANIES).sample(),
+  job_title: new SamplerArray(...JOB_TITLES).sample(),
   created_at: new Date().toISOString(),
   hyperlink: '',
   status: 'applied',
@@ -28,7 +29,16 @@ export default function Home() {
       <AppShell.Main bg='dark.8' pos='relative'>
         {/* Show loader if we don't yet know whether or not a user is authed */}
         {!loaded && !user && (
-          <Loader size='xl' pos='absolute' m='auto' top={0} right={0} bottom={0} left={0} />
+          <Loader
+            size='xl'
+            pos='absolute'
+            m='auto'
+            top={0}
+            right={0}
+            bottom={0}
+            left={0}
+            data-testid='loader'
+          />
         )}
         {/* Show the auth modal and data table with dummy data if no user is authed */}
         {loaded && !user && (

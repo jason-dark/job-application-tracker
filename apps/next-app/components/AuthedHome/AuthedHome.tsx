@@ -1,5 +1,5 @@
 import { Job } from '@job-application-tracker/types';
-import { Alert, Container, ContainerProps, rem,Skeleton } from '@mantine/core';
+import { Alert, Container, ContainerProps, rem, Skeleton } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { DataTable } from 'components/DataTable';
 import { JOBS } from 'lib/react-query/keys';
@@ -16,7 +16,7 @@ export const AuthedHome = ({ ...props }: AuthedHomeProps) => {
   });
 
   return (
-    <Container {...props}>
+    <Container data-testid='authed-home' {...props}>
       {isLoading && (
         <>
           <Skeleton height={rem(33)} {...skeletonProps} />

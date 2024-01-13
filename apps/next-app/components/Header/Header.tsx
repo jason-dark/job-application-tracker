@@ -1,4 +1,4 @@
-import { AppShell, AppShellHeaderProps, Button, Container,Flex, Title } from '@mantine/core';
+import { AppShell, AppShellHeaderProps, Button, Container, Flex, Title } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeInOut } from 'lib/animation';
@@ -10,7 +10,7 @@ export const Header = ({ ...props }: HeaderProps) => {
   const { loaded, user, signOut } = useSupabase();
 
   return (
-    <AppShell.Header withBorder={false} zIndex={2} {...props}>
+    <AppShell.Header withBorder={false} zIndex={2} data-testid='header' {...props}>
       <Container h='100%'>
         <Flex align='center' justify='space-between' h='100%'>
           <Title order={1} c='indigo' fz='lg'>

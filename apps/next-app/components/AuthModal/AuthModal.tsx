@@ -21,6 +21,7 @@ export const AuthModal = ({ ...props }: AuthModalProps) => {
       withCloseButton={false}
       withinPortal={false}
       lockScroll
+      data-testid='auth-modal'
       {...props}
     >
       <AnimatePresence mode='wait'>

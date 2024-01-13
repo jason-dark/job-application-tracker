@@ -1,6 +1,4 @@
-import { SamplerArray } from '@job-application-tracker/utils';
-
-export const COMPANIES = new SamplerArray(
+export const COMPANIES = [
   'Facebook',
   'Google',
   'Microsoft',
@@ -11,10 +9,10 @@ export const COMPANIES = new SamplerArray(
   'IBM',
   'Adobe',
   'Oracle',
-  'Samsung'
-);
+  'Samsung',
+] as const;
 
-export const JOB_TITLES = new SamplerArray(
+export const JOB_TITLES = [
   'Software Engineer, Systems',
   'Software Engineer',
   'Senior Front End Software Engineer',
@@ -22,5 +20,5 @@ export const JOB_TITLES = new SamplerArray(
   'Software Engineer - Product',
   'Research Engineer',
   'Machine Learning Engineer',
-  'Data Engineer, Analytics'
-);
+  'Data Engineer, Analytics',
+] as const;
