@@ -7,6 +7,7 @@ import { fadeInOut } from 'lib/animation';
 import { useOptimisticCreateJob } from 'lib/hooks';
 import { theme } from 'lib/theme';
 import { useCallback } from 'react';
+import { useStyles } from 'tss-react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface DataTableProps extends BoxProps {
@@ -29,17 +30,19 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
     [optimisticCreateJob]
   );
 
+  const { css } = useStyles();
+
   return (
-    <Box data-testid='data-table' {...props}>
-      <Table>
+    <Box data-testid='data-table' className={css({ overflowX: 'auto' })} {...props}>
+      <Table miw={rem(1000)}>
         <Table.Thead>
           <Table.Tr>
-            <Table.Th w='10%'>Date added</Table.Th>
+            <Table.Th w='12%'>Date added</Table.Th>
             <Table.Th w='20%'>Company</Table.Th>
             <Table.Th w='20%'>Job title</Table.Th>
             <Table.Th w='20%'>Status</Table.Th>
             <Table.Th w='20%'>Link</Table.Th>
-            <Table.Th w='10%'>Actions</Table.Th>
+            <Table.Th w='8%'>Actions</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -72,9 +75,9 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
         <Button
           rightSection={<IconCirclePlus style={{ height: rem(20) }} />}
           mt='md'
-          w='100%'
           onClick={createNewJob}
           variant='outline'
+          className={css({ position: 'sticky', left: 0, width: '100%' })}
         >
           Add job
         </Button>
