@@ -27,8 +27,8 @@ export class SupabaseService {
     this.logger.log(`initialising new supabase client for new ${Scope.REQUEST}`);
 
     this.clientInstance = createClient<Database>(
-      this.configService.get('SUPABASE_URL'),
-      this.configService.get('SUPABASE_KEY')
+      this.configService.get('NEXT_PUBLIC_SUPABASE_URL'),
+      this.configService.get('SUPABASE_SERVICE_ROLE_KEY')
     );
 
     return this.clientInstance;

@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 
 import { JobsService } from './jobs.service';
+import { CreateJobPayload, UpdateJobPayload } from '@job-application-tracker/types';
 
 @Controller('jobs')
 export class JobsController {
@@ -9,5 +10,23 @@ export class JobsController {
   @Get()
   getAllJobsForUser() {
     return this.jobsService.getAllJobsForUser();
+  }
+
+  @Post('create')
+  createJob(@Body() job: CreateJobPayload) {
+    console.log(job);
+    return this.jobsService.createJob(job);
+  }
+
+  @Patch('update')
+  updateJob(@Body() job: UpdateJobPayload) {
+    console.log(job);
+    return this.jobsService.updateJob(job);
+  }
+
+  @Delete(':id')
+  deleteJob(@Param('id') id: string) {
+    console.log(id);
+    return this.jobsService.deleteJobById(id);
   }
 }
