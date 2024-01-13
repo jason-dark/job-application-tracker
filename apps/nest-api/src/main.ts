@@ -5,20 +5,12 @@
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { NextFunction, Request, Response } from 'express';
 
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({
-    origin: process.env.NEXT_PUBLIC_URL,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  });
-  app.use(function (request: Request, response: Response, next: NextFunction) {
-    response.setHeader('Access-Control-Allow-Origin', process.env.NEXT_PUBLIC_URL);
-    next();
-  });
+  app.enableCors();
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
