@@ -1,5 +1,6 @@
-import { getAllJobs } from './get-all-jobs';
 import { AxiosClient } from 'lib/axios';
+
+import { getAllJobs } from './get-all-jobs';
 
 jest.mock('lib/axios', () => ({
   AxiosClient: {

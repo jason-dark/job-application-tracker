@@ -1,8 +1,9 @@
-import { useSupabase } from './use-supabase';
-import { Supabase } from 'lib/supabase-client';
-import { SupabaseClient } from '@supabase/supabase-js';
 import { Database } from '@job-application-tracker/types';
+import { SupabaseClient } from '@supabase/supabase-js';
+import { Supabase } from 'lib/supabase-client';
 import { act, renderHook } from 'lib/testing/test-utils';
+
+import { useSupabase } from './use-supabase';
 
 describe('useSupabase', () => {
   let supabaseMock: { auth: { onAuthStateChange: jest.Mock; signOut: jest.Mock } };

@@ -1,11 +1,9 @@
-import { Inject, Injectable, Logger, Scope } from '@nestjs/common';
-import { Request } from 'express';
-import { REQUEST } from '@nestjs/core';
-import { ConfigService } from '@nestjs/config';
-
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-
 import { Database } from '@job-application-tracker/types';
+import { Inject, Injectable, Logger, Scope } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { REQUEST } from '@nestjs/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Request } from 'express';
 
 @Injectable({ scope: Scope.REQUEST })
 export class SupabaseService {

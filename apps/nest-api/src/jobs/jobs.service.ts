@@ -5,8 +5,9 @@ import {
   UpdateJobPayload,
 } from '@job-application-tracker/types';
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
 import { REQUEST } from '@nestjs/core';
+
+import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
 export class JobsService {

@@ -1,9 +1,9 @@
 import { Modal, ModalProps } from '@mantine/core';
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { fadeInOut } from 'lib/animation';
 import { AuthForm } from 'components/AuthForm';
 import { AuthSuccess } from 'components/AuthSuccess';
+import { AnimatePresence, motion } from 'framer-motion';
+import { fadeInOut } from 'lib/animation';
+import { useState } from 'react';
 
 interface AuthModalProps extends Partial<ModalProps> {}
 

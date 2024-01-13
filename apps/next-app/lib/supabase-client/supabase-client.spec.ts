@@ -1,5 +1,6 @@
-import { Supabase } from './supabase-client';
 import * as supabaseJS from '@supabase/supabase-js';
+
+import { Supabase } from './supabase-client';
 
 describe('Supabase', () => {
   let supabaseInstance: Supabase;

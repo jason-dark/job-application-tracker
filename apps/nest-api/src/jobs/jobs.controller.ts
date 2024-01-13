@@ -1,7 +1,7 @@
+import { CreateJobPayload, UpdateJobPayload } from '@job-application-tracker/types';
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 
 import { JobsService } from './jobs.service';
-import { CreateJobPayload, UpdateJobPayload } from '@job-application-tracker/types';
 
 @Controller('jobs')
 export class JobsController {

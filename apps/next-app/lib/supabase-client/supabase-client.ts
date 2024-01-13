@@ -1,5 +1,5 @@
-import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { Database } from '@job-application-tracker/types';
+import { createClient,SupabaseClient } from '@supabase/supabase-js';
 
 export class Supabase {
   private static instance: Supabase | null;

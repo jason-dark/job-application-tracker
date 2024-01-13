@@ -1,6 +1,7 @@
 import { CreateJobPayload } from '@job-application-tracker/types';
-import { createJob } from './create-job';
 import { AxiosClient } from 'lib/axios';
+
+import { createJob } from './create-job';
 
 jest.mock('lib/axios', () => ({
   AxiosClient: { getInstance: jest.fn().mockReturnValue({ client: { post: jest.fn() } }) },

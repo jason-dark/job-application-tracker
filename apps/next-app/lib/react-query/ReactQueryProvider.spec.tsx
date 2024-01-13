@@ -1,4 +1,5 @@
 import { render } from 'lib/testing/test-utils';
+
 import { ReactQueryProvider } from './ReactQueryProvider';
 
 describe('ReactQueryProvider', () => {

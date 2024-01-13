@@ -1,7 +1,8 @@
-import { act, renderHook } from 'lib/testing/test-utils';
-import { useOptimisticCreateJob } from './use-optimistic-create-job';
-import * as ReactQuery from 'react-query';
 import { CreateJobPayload } from '@job-application-tracker/types';
+import { act, renderHook } from 'lib/testing/test-utils';
+import * as ReactQuery from 'react-query';
+
+import { useOptimisticCreateJob } from './use-optimistic-create-job';
 
 jest.mock('react-query');
 

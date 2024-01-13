@@ -1,5 +1,6 @@
-import { renderHook } from 'lib/testing/test-utils';
 import { notifications } from '@mantine/notifications';
+import { renderHook } from 'lib/testing/test-utils';
+
 import { useNotifications } from './use-notifications';
 
 jest.mock('@mantine/notifications', () => ({

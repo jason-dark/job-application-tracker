@@ -1,4 +1,4 @@
-import { AppShell, AppShellHeaderProps, Title, Flex, Button, Container } from '@mantine/core';
+import { AppShell, AppShellHeaderProps, Button, Container,Flex, Title } from '@mantine/core';
 import { IconLogout } from '@tabler/icons-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeInOut } from 'lib/animation';

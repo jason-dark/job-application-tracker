@@ -1,6 +1,7 @@
-import { render, screen } from 'lib/testing/test-utils';
-import { Footer } from './Footer';
 import { AppShell } from '@mantine/core';
+import { render, screen } from 'lib/testing/test-utils';
+
+import { Footer } from './Footer';
 
 describe('Footer', () => {
   it('renders the footer component', () => {

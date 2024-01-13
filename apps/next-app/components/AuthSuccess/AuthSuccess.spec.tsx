@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from 'lib/testing/test-utils';
+import { fireEvent,render, screen } from 'lib/testing/test-utils';
+
 import { AuthSuccess } from './AuthSuccess';
 
 describe('AuthSuccess', () => {

@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
-import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
-import { theme } from 'lib/theme';
-import { ReactQueryProvider } from 'lib/react-query';
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+
+import { ColorSchemeScript,MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
+import { ReactQueryProvider } from 'lib/react-query';
+import { theme } from 'lib/theme';
+import type { Metadata } from 'next';
+import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
 
 export const metadata: Metadata = {
   title: 'Job Application Tracker',

@@ -1,5 +1,6 @@
-import { deleteJob } from './delete-job';
 import { AxiosClient } from 'lib/axios';
+
+import { deleteJob } from './delete-job';
 
 jest.mock('lib/axios', () => ({
   AxiosClient: { getInstance: jest.fn().mockReturnValue({ client: { delete: jest.fn() } }) },

@@ -1,14 +1,23 @@
 'use client';
 
-import { AppShell, Container, Loader } from '@mantine/core';
-import { Header } from 'components/Header';
-import { Footer } from 'components/Footer';
-import { DataTable } from 'components/DataTable';
-import { v4 as uuidv4 } from 'uuid';
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
-import { AuthModal } from 'components/AuthModal';
-import { useSupabase } from 'lib/hooks';
+import { AppShell, Container, Loader } from '@mantine/core';
 import { AuthedHome } from 'components/AuthedHome';
+import { AuthModal } from 'components/AuthModal';
+import { DataTable } from 'components/DataTable';
+import { Footer } from 'components/Footer';
+import { Header } from 'components/Header';
+import { useSupabase } from 'lib/hooks';
+
+const randomJobs = [...Array(20)].map((_, i) => ({
+  id: i.toString(),
+  company: COMPANIES.sample(),
+  job_title: JOB_TITLES.sample(),
+  created_at: new Date().toISOString(),
+  hyperlink: '',
+  status: 'applied',
+  user_id: i.toString(),
+}));
 
 export default function Home() {
   const { loaded, user } = useSupabase();
@@ -26,17 +35,8 @@ export default function Home() {
           <>
             <AuthModal />
             <Container>
-              <DataTable
-                jobs={[...Array(20)].map(() => ({
-                  id: uuidv4(),
-                  company: COMPANIES.sample(),
-                  job_title: JOB_TITLES.sample(),
-                  created_at: new Date().toISOString(),
-                  hyperlink: 'https://www.metacareers.com/v2/jobs/237697185997433/',
-                  status: 'applied',
-                  user_id: uuidv4(),
-                }))}
-              />
+              {/* Random jobs to make the unauthed view look better, table is shown behind the blur of the auth modal */}
+              <DataTable jobs={randomJobs} />
             </Container>
           </>
         )}

@@ -1,7 +1,8 @@
-import { render, screen, fireEvent } from 'lib/testing/test-utils';
-import { DataTableRow } from './DataTableRow';
 import { Table } from '@mantine/core';
 import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
+import { fireEvent, render, screen } from 'lib/testing/test-utils';
+
+import { DataTableRow } from './DataTableRow';
 
 jest.mock('lib/hooks', () => ({
   useOptimisticDeleteJob: jest.fn(() => ({ mutate: jest.fn() })),
