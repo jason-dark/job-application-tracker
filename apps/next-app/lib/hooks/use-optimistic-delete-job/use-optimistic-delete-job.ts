@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from 'react-query';
-import { useNotifications } from '../use-notifications';
+import { Job } from '@job-application-tracker/types';
 import { JOBS } from 'lib/react-query/keys';
 import { deleteJob } from 'lib/react-query/mutations';
-import { Job } from '@job-application-tracker/types';
+import { useMutation, useQueryClient } from 'react-query';
+
+import { useNotifications } from '../use-notifications';
 
 export const useOptimisticDeleteJob = () => {
   const queryClient = useQueryClient();

@@ -1,6 +1,7 @@
 import { act, renderHook } from 'lib/testing/test-utils';
-import { useOptimisticDeleteJob } from './use-optimistic-delete-job';
 import * as ReactQuery from 'react-query';
+
+import { useOptimisticDeleteJob } from './use-optimistic-delete-job';
 
 jest.mock('react-query');
 

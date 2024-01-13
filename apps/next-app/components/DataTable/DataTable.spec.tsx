@@ -1,8 +1,9 @@
-import { v4 as uuidv4 } from 'uuid';
-import { render } from 'lib/testing/test-utils';
-import { DataTable } from './DataTable';
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
+import { render } from 'lib/testing/test-utils';
 import * as ReactQuery from 'react-query';
+import { v4 as uuidv4 } from 'uuid';
+
+import { DataTable } from './DataTable';
 
 jest.mock('react-query');
 jest

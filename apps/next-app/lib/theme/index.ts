@@ -1,11 +1,11 @@
 'use client';
 
 import {
+  Container,
   createTheme,
   DEFAULT_THEME,
   MantineBreakpointsValues,
   mergeMantineTheme,
-  Container,
 } from '@mantine/core';
 import { themeToVars } from '@mantine/vanilla-extract';
 

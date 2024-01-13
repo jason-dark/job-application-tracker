@@ -1,5 +1,5 @@
 import { Box, BoxProps, Button, TextInput, Title } from '@mantine/core';
-import { useForm, isEmail } from '@mantine/form';
+import { isEmail,useForm } from '@mantine/form';
 import { Supabase } from 'lib/supabase-client';
 import { useCallback, useState } from 'react';
 

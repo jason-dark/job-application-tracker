@@ -1,10 +1,10 @@
-import { Alert, Container, ContainerProps, Skeleton, rem } from '@mantine/core';
-import { useQuery } from 'react-query';
-import { JOBS } from 'lib/react-query/keys';
-import { getAllJobs } from 'lib/react-query/queries';
+import { Job } from '@job-application-tracker/types';
+import { Alert, Container, ContainerProps, rem,Skeleton } from '@mantine/core';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { DataTable } from 'components/DataTable';
-import { Job } from '@job-application-tracker/types';
+import { JOBS } from 'lib/react-query/keys';
+import { getAllJobs } from 'lib/react-query/queries';
+import { useQuery } from 'react-query';
 
 const skeletonProps = { radius: rem(4), mb: rem(2) };
 

@@ -1,6 +1,7 @@
 import { UpdateJobPayload } from '@job-application-tracker/types';
-import { updateJob } from './update-job';
 import { AxiosClient } from 'lib/axios';
+
+import { updateJob } from './update-job';
 
 jest.mock('lib/axios', () => ({
   AxiosClient: { getInstance: jest.fn().mockReturnValue({ client: { patch: jest.fn() } }) },

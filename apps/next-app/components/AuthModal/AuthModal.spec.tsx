@@ -1,6 +1,7 @@
-import { render, screen, fireEvent, waitFor } from 'lib/testing/test-utils';
-import { AuthModal } from './AuthModal';
+import { fireEvent, render, screen, waitFor } from 'lib/testing/test-utils';
 import React from 'react';
+
+import { AuthModal } from './AuthModal';
 
 jest.mock('lib/supabase-client', () => ({
   Supabase: {

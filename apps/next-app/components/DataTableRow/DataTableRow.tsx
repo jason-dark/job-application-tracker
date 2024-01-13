@@ -1,15 +1,15 @@
-import { ActionIcon, Box, Group, Loader, Table, TextInput, Tooltip, rem } from '@mantine/core';
 import { Job, UpdateJobPayload } from '@job-application-tracker/types';
-import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
+import { ActionIcon, Box, Group, Loader, rem,Table, TextInput, Tooltip } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { debounce } from 'lodash';
 import {
   IconCircleCheck,
   IconExternalLink,
   IconExternalLinkOff,
   IconTrashX,
 } from '@tabler/icons-react';
+import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
 import { theme } from 'lib/theme';
+import { debounce } from 'lodash';
 
 interface DataTableRowProps {
   job: Job;

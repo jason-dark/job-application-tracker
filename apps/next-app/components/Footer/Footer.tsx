@@ -1,4 +1,4 @@
-import { AppShell, Container, AppShellFooterProps, Anchor, rem, Box, Group } from '@mantine/core';
+import { Anchor, AppShell, AppShellFooterProps, Box, Container, Group,rem } from '@mantine/core';
 import { IconBrandGithub, IconBrandLinkedin } from '@tabler/icons-react';
 import { theme } from 'lib/theme';
 

@@ -1,6 +1,7 @@
 import { render } from 'lib/testing/test-utils';
-import { AuthedHome } from './AuthedHome';
 import * as ReactQuery from 'react-query';
+
+import { AuthedHome } from './AuthedHome';
 
 jest.mock('react-query');
 jest

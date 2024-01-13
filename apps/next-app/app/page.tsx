@@ -1,13 +1,13 @@
 'use client';
 
-import { AppShell, Container, Loader } from '@mantine/core';
-import { Header } from 'components/Header';
-import { Footer } from 'components/Footer';
-import { DataTable } from 'components/DataTable';
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
-import { AuthModal } from 'components/AuthModal';
-import { useSupabase } from 'lib/hooks';
+import { AppShell, Container, Loader } from '@mantine/core';
 import { AuthedHome } from 'components/AuthedHome';
+import { AuthModal } from 'components/AuthModal';
+import { DataTable } from 'components/DataTable';
+import { Footer } from 'components/Footer';
+import { Header } from 'components/Header';
+import { useSupabase } from 'lib/hooks';
 
 const randomJobs = [...Array(20)].map((_, i) => ({
   id: i.toString(),

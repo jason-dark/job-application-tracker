@@ -1,7 +1,8 @@
-import { render, screen, fireEvent } from 'lib/testing/test-utils';
-import { Header } from './Header';
 import { AppShell } from '@mantine/core';
 import { useSupabase } from 'lib/hooks';
+import { fireEvent,render, screen } from 'lib/testing/test-utils';
+
+import { Header } from './Header';
 
 // Mock the useSupabase hook
 jest.mock('lib/hooks', () => ({

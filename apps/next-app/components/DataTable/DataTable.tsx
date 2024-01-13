@@ -1,13 +1,13 @@
-import { Box, BoxProps, Button, Card, Table, Title, rem } from '@mantine/core';
 import { Job } from '@job-application-tracker/types';
-import { useCallback } from 'react';
+import { Box, BoxProps, Button, Card, rem,Table, Title } from '@mantine/core';
 import { IconCirclePlus } from '@tabler/icons-react';
-import { useOptimisticCreateJob } from 'lib/hooks';
 import { DataTableRow } from 'components/DataTableRow';
-import { v4 as uuidv4 } from 'uuid';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeInOut } from 'lib/animation';
+import { useOptimisticCreateJob } from 'lib/hooks';
 import { theme } from 'lib/theme';
+import { useCallback } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface DataTableProps extends BoxProps {
   jobs: Job[];
