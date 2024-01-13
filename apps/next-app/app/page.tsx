@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
 import { AuthModal } from 'components/AuthModal';
 import { useSupabase } from 'lib/hooks';
+import { AuthedHome } from 'components/AuthedHome';
 
 export default function Home() {
   const { loaded, user } = useSupabase();
@@ -39,22 +40,8 @@ export default function Home() {
             </Container>
           </>
         )}
-        {/* Show the data table if the user is authed */}
-        {loaded && !!user && (
-          <Container>
-            <DataTable
-              jobs={[...Array(20)].map(() => ({
-                id: uuidv4(),
-                company: COMPANIES.sample(),
-                job_title: JOB_TITLES.sample(),
-                created_at: new Date().toISOString(),
-                hyperlink: 'https://www.metacareers.com/v2/jobs/237697185997433/',
-                status: 'applied',
-                user_id: uuidv4(),
-              }))}
-            />
-          </Container>
-        )}
+        {/* Show the main home page if the user is authed */}
+        {loaded && !!user && <AuthedHome />}
       </AppShell.Main>
       <Footer />
     </AppShell>

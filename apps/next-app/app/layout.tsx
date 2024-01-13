@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir';
+import { theme } from 'lib/theme';
+import { ReactQueryProvider } from 'lib/react-query';
 import '@mantine/core/styles.css';
-import { theme } from '../lib/theme';
+import '@mantine/notifications/styles.css';
+import { Notifications } from '@mantine/notifications';
 
 export const metadata: Metadata = {
   title: 'Job Application Tracker',
@@ -20,7 +23,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body suppressHydrationWarning={true}>
         <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
           <MantineProvider defaultColorScheme='dark' theme={theme}>
-            {children}
+            <Notifications />
+            <ReactQueryProvider>{children}</ReactQueryProvider>
           </MantineProvider>
         </NextAppDirEmotionCacheProvider>
       </body>

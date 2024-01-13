@@ -1,21 +1,32 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
 export class AxiosClient {
-  axiosClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-  });
+  private static instance: AxiosClient | null;
+  public client: AxiosInstance;
 
-  // constructor() {
-  // super();
-  // this.client.auth.onAuthStateChange((_, session) => {
-  //   if (session) {
-  //     console.log('setting bearer token', session.access_token);
-  //     this.axiosClient.defaults.headers.common[
-  //       'Authorization'
-  //     ] = `Bearer ${session.access_token}`;
-  //   } else {
-  //     this.axiosClient.defaults.headers.common['Authorization'] = null;
-  //   }
-  // });
-  // }
+  private constructor() {
+    this.client = axios.create({
+      baseURL: process.env.NEXT_PUBLIC_API_URL,
+    });
+  }
+
+  public static getInstance(): AxiosClient {
+    if (!AxiosClient.instance) {
+      AxiosClient.instance = new AxiosClient();
+    }
+
+    return AxiosClient.instance;
+  }
+
+  public static resetInstance(): void {
+    AxiosClient.instance = null;
+  }
+
+  public set token(token: string | null) {
+    if (token) {
+      this.client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      this.client.defaults.headers.common['Authorization'] = null;
+    }
+  }
 }
