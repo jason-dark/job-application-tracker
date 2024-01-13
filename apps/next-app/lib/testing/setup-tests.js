@@ -15,3 +15,5 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn(),
   })),
 });
+
+process.env.NEXT_PUBLIC_API_URL = 'test_url';

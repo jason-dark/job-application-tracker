@@ -5,7 +5,9 @@ import { REQUEST } from '@nestjs/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Request } from 'express';
 
-// A single instance of the provider is shared across the entire application. We use a service account for auth so we don't need to worry about auth per request
+/**
+ * Service for interacting with Supabase. A single instance of the provider is shared across the entire application. We use a service account for auth so we don't need to worry about auth per request.
+ */
 @Injectable({ scope: Scope.DEFAULT })
 export class SupabaseService {
   private readonly logger = new Logger(SupabaseService.name);
@@ -16,6 +18,12 @@ export class SupabaseService {
     private readonly configService: ConfigService
   ) {}
 
+  /**
+   * Get the Supabase client instance.
+   * If the client instance already exists, it returns the existing client.
+   * Otherwise, it initializes a new client and returns it.
+   * @returns The Supabase client instance.
+   */
   getClient() {
     if (this.clientInstance) {
       this.logger.log(`Supabase client already exists - returning existing client`);

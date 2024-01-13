@@ -9,6 +9,9 @@ import { REQUEST } from '@nestjs/core';
 
 import { SupabaseService } from '../supabase/supabase.service';
 
+/**
+ * Service for managing jobs.
+ */
 @Injectable()
 export class JobsService {
   private readonly logger = new Logger(JobsService.name);
@@ -18,6 +21,10 @@ export class JobsService {
     private readonly supabase: SupabaseService
   ) {}
 
+  /**
+   * Retrieves all jobs associated with the current user.
+   * @returns A Promise of an array of Jobs.
+   */
   async getAllJobsForUser(): Promise<Job[]> {
     const userId = this.request?.user?.sub;
     const { data, error } = await this.supabase
@@ -36,6 +43,12 @@ export class JobsService {
     return data;
   }
 
+  /**
+   * Creates a new job for the current user.
+   * @param job - The payload containing information about the new job.
+   * @returns A Promise that resolves to the created Job object.
+   * @throws HttpException with status BAD_REQUEST if there's an error creating the job.
+   */
   async createJob(job: CreateJobPayload): Promise<Job> {
     const newJob = { ...job, user_id: this.request.user.sub };
     const { data, error } = await this.supabase.getClient().from('jobs').insert(newJob).select();
@@ -53,6 +66,12 @@ export class JobsService {
     return data[0];
   }
 
+  /**
+   * Updates an existing job for the current user.
+   * @param jobUpdate - The payload containing updated information about the job.
+   * @returns A Promise that resolves to the updated Job object.
+   * @throws HttpException with status BAD_REQUEST if there's an error updating the job.
+   */
   async updateJob(jobUpdate: UpdateJobPayload): Promise<Job> {
     // Explicitly only set these fields
     const update = {};
@@ -83,6 +102,12 @@ export class JobsService {
     return data[0];
   }
 
+  /**
+   * Deletes a job by its ID.
+   * @param id - The ID of the job to be deleted.
+   * @returns A Promise that resolves when the job is successfully deleted.
+   * @throws HttpException with status BAD_REQUEST if there's an error deleting the job.
+   */
   async deleteJobById(id: string): Promise<void> {
     const { error } = await this.supabase
       .getClient()
