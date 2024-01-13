@@ -10,6 +10,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  console.log('Allowing origin:', process.env.NEXT_PUBLIC_URL);
   app.enableCors({
     origin: process.env.NEXT_PUBLIC_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
