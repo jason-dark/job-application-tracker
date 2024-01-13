@@ -5,6 +5,13 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import { useNotifications } from '../use-notifications';
 
+/**
+ * Custom React hook for optimistic creation of a job.
+ *
+ * This hook provides functionality for creating a job optimistically. The cache is immediately updated with the new job data, then a refetch happens to update the cache with data from the server. If there is an error, the UI is rolled back to the previous state.
+ *
+ * @returns The mutation object provided by `react-query` for handling the optimistic create job operation.
+ */
 export const useOptimisticCreateJob = () => {
   const queryClient = useQueryClient();
   const { notifyError } = useNotifications();

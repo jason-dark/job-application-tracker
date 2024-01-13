@@ -44,7 +44,7 @@ export default function Home() {
         {loaded && !user && (
           <>
             <AuthModal />
-            <Container>
+            <Container px={0}>
               {/* Random jobs to make the unauthed view look better, table is shown behind the blur of the auth modal */}
               <DataTable jobs={randomJobs} />
             </Container>

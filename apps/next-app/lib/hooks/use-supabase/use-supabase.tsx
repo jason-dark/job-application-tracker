@@ -3,6 +3,11 @@ import { AxiosClient } from 'lib/axios';
 import { Supabase } from 'lib/supabase-client';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+/**
+ * Custom React hook for interacting with Supabase.
+ *
+ * @returns Object with user, loaded, signOut, and the Supabase client.
+ */
 export function useSupabase() {
   const [user, setUser] = useState<User | null>(null);
   const [loaded, setLoaded] = useState(false);
@@ -11,6 +16,7 @@ export function useSupabase() {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((_, session) => {
+      // Set the bearer token within the Axios client if the user is authed, or remove it if not
       axios.token = session?.user ? session?.access_token : null;
       setUser(session?.user || null);
       setLoaded(true);

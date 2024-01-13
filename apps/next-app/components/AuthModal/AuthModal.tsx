@@ -3,12 +3,15 @@ import { AuthForm } from 'components/AuthForm';
 import { AuthSuccess } from 'components/AuthSuccess';
 import { AnimatePresence, motion } from 'framer-motion';
 import { fadeInOut } from 'lib/animation';
+import { theme } from 'lib/theme';
 import { useState } from 'react';
+import { useStyles } from 'tss-react';
 
 interface AuthModalProps extends Partial<ModalProps> {}
 
 export const AuthModal = ({ ...props }: AuthModalProps) => {
   const [email, setEmail] = useState('');
+  const { css } = useStyles();
 
   return (
     <Modal
@@ -21,6 +24,13 @@ export const AuthModal = ({ ...props }: AuthModalProps) => {
       withCloseButton={false}
       withinPortal={false}
       lockScroll
+      className={css({
+        '& .mantine-Modal-inner': {
+          padding: theme.spacing.md,
+          left: 0,
+          right: 0,
+        },
+      })}
       data-testid='auth-modal'
       {...props}
     >

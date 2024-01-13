@@ -16,7 +16,7 @@ export const AuthedHome = ({ ...props }: AuthedHomeProps) => {
   });
 
   return (
-    <Container data-testid='authed-home' {...props}>
+    <Container data-testid='authed-home' px={0} {...props}>
       {isLoading && (
         <>
           <Skeleton height={rem(33)} {...skeletonProps} />

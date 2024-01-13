@@ -68,7 +68,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
         />
       </Table.Td>
       <Table.Td>
-        <Group>
+        <Group wrap='nowrap'>
           <ActionIcon
             variant='light'
             size='xs'
@@ -93,7 +93,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
         </Group>
       </Table.Td>
       <Table.Td>
-        <Group justify='space-between'>
+        <Group justify='space-between' wrap='nowrap'>
           <Tooltip label='Delete' color='dark.9' withArrow fz='xs'>
             <ActionIcon
               variant='light'
