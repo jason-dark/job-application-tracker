@@ -19,9 +19,5 @@ jobs:
           node-version: 20
           cache: 'yarn'
       - run: yarn install --frozen-lockfile --non-interactive
-      - uses: nrwl/nx-set-shas@v4
-      # This line is needed for nx affected to work when CI is running on a PR
-      - run: git branch --track main origin/master
-
       - run: npx nx format:check
-      - run: npx nx affected -t lint,test,build --parallel=3
+      - run: npx nx run-many --target=test --all --parallel --max-parallel=3
