@@ -5,6 +5,9 @@ import { IconCirclePlus } from '@tabler/icons-react';
 import { useOptimisticCreateJob } from 'lib/hooks';
 import { DataTableRow } from 'components/DataTableRow';
 import { v4 as uuidv4 } from 'uuid';
+import { AnimatePresence, motion } from 'framer-motion';
+import { fadeInOut } from 'lib/animation';
+import { theme } from 'lib/theme';
 
 interface DataTableProps extends BoxProps {
   jobs: Job[];
@@ -44,9 +47,20 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
-            {jobs.map((job, i) => (
-              <DataTableRow key={job.id} job={job} index={i} />
-            ))}
+            <AnimatePresence mode='sync'>
+              {jobs.map((job, i) => (
+                // <Table.Tr key={job.id}>
+                //   <DataTableRow job={job} index={i} />
+                // </Table.Tr>
+                <motion.tr
+                  key={job.id}
+                  style={{ borderBottom: `1px solid ${theme.colors.dark[4]}` }}
+                  {...fadeInOut}
+                >
+                  <DataTableRow key={job.id} job={job} index={i} />
+                </motion.tr>
+              ))}
+            </AnimatePresence>
           </Table.Tbody>
         </Table>
         {jobs.length === 0 ? (

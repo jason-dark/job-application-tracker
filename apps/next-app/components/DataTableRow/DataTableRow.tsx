@@ -1,20 +1,11 @@
-import {
-  ActionIcon,
-  Box,
-  Group,
-  Table,
-  TableTrProps,
-  TextInput,
-  Tooltip,
-  rem,
-} from '@mantine/core';
+import { ActionIcon, Box, Group, Table, TextInput, Tooltip, rem } from '@mantine/core';
 import { Job, UpdateJobPayload } from '@job-application-tracker/types';
 import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
 import { useForm } from '@mantine/form';
 import { debounce } from 'lodash';
 import { IconExternalLink, IconExternalLinkOff, IconTrashX } from '@tabler/icons-react';
 
-interface DataTableRowProps extends TableTrProps {
+interface DataTableRowProps {
   job: Job;
   index: number;
 }
@@ -38,7 +29,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
   });
 
   return (
-    <Table.Tr {...props}>
+    <>
       <Table.Td>
         {new Date(job.created_at).toLocaleDateString('en-NZ', {
           year: 'numeric',
@@ -72,7 +63,15 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
       </Table.Td>
       <Table.Td>
         <Group>
-          <ActionIcon variant='light' size='xs' disabled={!form.values.hyperlink}>
+          <ActionIcon
+            variant='light'
+            size='xs'
+            disabled={!form.values.hyperlink}
+            component='a'
+            style={{ pointerEvents: form.values.hyperlink ? 'auto' : 'none' }}
+            href={form.values.hyperlink}
+            target='_blank'
+          >
             <Box
               component={form.values.hyperlink ? IconExternalLink : IconExternalLinkOff}
               stroke={1}
@@ -101,6 +100,6 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
           </Tooltip>
         </Group>
       </Table.Td>
-    </Table.Tr>
+    </>
   );
 };

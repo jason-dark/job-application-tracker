@@ -23,7 +23,9 @@ describe('DataTableRow', () => {
     render(
       <Table>
         <Table.Tbody>
-          <DataTableRow job={mockJob} index={0} />
+          <Table.Tr>
+            <DataTableRow job={mockJob} index={0} />
+          </Table.Tr>
         </Table.Tbody>
       </Table>
     );
@@ -43,7 +45,9 @@ describe('DataTableRow', () => {
     render(
       <Table>
         <Table.Tbody>
-          <DataTableRow job={mockJob} index={0} />
+          <Table.Tr>
+            <DataTableRow job={mockJob} index={0} />
+          </Table.Tr>
         </Table.Tbody>
       </Table>
     );
@@ -80,7 +84,9 @@ describe('DataTableRow', () => {
     render(
       <Table>
         <Table.Tbody>
-          <DataTableRow job={mockJob} index={0} />
+          <Table.Tr>
+            <DataTableRow job={mockJob} index={0} />
+          </Table.Tr>
         </Table.Tbody>
       </Table>
     );
