@@ -6,7 +6,7 @@ import { Notifications } from '@mantine/notifications';
 export const MockProviders = ({ children }: { children: ReactNode }) => {
   return (
     <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
-      <Notifications />
+      {/* <Notifications /> */}
       <MantineProvider>{children}</MantineProvider>
     </NextAppDirEmotionCacheProvider>
   );

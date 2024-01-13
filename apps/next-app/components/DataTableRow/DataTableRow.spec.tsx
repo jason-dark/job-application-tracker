@@ -1,23 +1,93 @@
-import { v4 as uuidv4 } from 'uuid';
-import { render } from 'lib/testing/test-utils';
-import { DataTable } from './DataTableRow';
-import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
+import { render, screen, fireEvent } from 'lib/testing/test-utils';
+import { DataTableRow } from './DataTableRow';
+import { Table } from '@mantine/core';
+import { useOptimisticDeleteJob, useOptimisticUpdateJob } from 'lib/hooks';
 
-describe('DataTable', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
-      <DataTable
-        jobs={[...Array(16)].map(() => ({
-          id: uuidv4(),
-          company: COMPANIES.sample(),
-          job_title: JOB_TITLES.sample(),
-          created_at: new Date().toISOString(),
-          hyperlink: 'https://www.metacareers.com/v2/jobs/237697185997433/',
-          status: 'applied',
-          user_id: uuidv4(),
-        }))}
-      />
+jest.mock('lib/hooks', () => ({
+  useOptimisticDeleteJob: jest.fn(() => ({ mutate: jest.fn() })),
+  useOptimisticUpdateJob: jest.fn(() => ({ mutate: jest.fn() })),
+}));
+
+describe('DataTableRow', () => {
+  const mockJob = {
+    id: '1',
+    company: 'Test Company',
+    job_title: 'Test Job',
+    hyperlink: 'https://example.com',
+    status: 'In Progress',
+    created_at: '2022-01-01',
+    user_id: '123',
+  };
+
+  it('renders the job details correctly', () => {
+    render(
+      <Table>
+        <Table.Tbody>
+          <DataTableRow job={mockJob} index={0} />
+        </Table.Tbody>
+      </Table>
     );
-    expect(baseElement).toBeTruthy();
+
+    expect(screen.getByPlaceholderText('Enter a company name...')).toHaveValue(mockJob.company);
+    expect(screen.getByPlaceholderText('Enter a job title...')).toHaveValue(mockJob.job_title);
+    expect(screen.getByPlaceholderText('Enter a link...')).toHaveValue(mockJob.hyperlink);
+    expect(screen.getByPlaceholderText('Enter a status...')).toHaveValue(mockJob.status);
+  });
+
+  it('updates the job details on input change', async () => {
+    const updateMutation = jest.fn();
+    (useOptimisticUpdateJob as jest.Mock).mockReturnValue({
+      mutate: updateMutation,
+    });
+
+    render(
+      <Table>
+        <Table.Tbody>
+          <DataTableRow job={mockJob} index={0} />
+        </Table.Tbody>
+      </Table>
+    );
+
+    const companyInput = screen.getByPlaceholderText('Enter a company name...');
+    const jobTitleInput = screen.getByPlaceholderText('Enter a job title...');
+    const hyperlinkInput = screen.getByPlaceholderText('Enter a link...');
+    const statusInput = screen.getByPlaceholderText('Enter a status...');
+
+    const update = {
+      company: 'Updated Company',
+      job_title: 'Updated Job',
+      hyperlink: 'https://updated-example.com',
+      status: 'Updated Status',
+    };
+
+    fireEvent.change(companyInput, { target: { value: update.company } });
+    fireEvent.change(jobTitleInput, { target: { value: update.job_title } });
+    fireEvent.change(hyperlinkInput, { target: { value: update.hyperlink } });
+    fireEvent.change(statusInput, { target: { value: update.status } });
+
+    expect(screen.getByPlaceholderText('Enter a company name...')).toHaveValue(update.company);
+    expect(screen.getByPlaceholderText('Enter a job title...')).toHaveValue(update.job_title);
+    expect(screen.getByPlaceholderText('Enter a link...')).toHaveValue(update.hyperlink);
+    expect(screen.getByPlaceholderText('Enter a status...')).toHaveValue(update.status);
+  });
+
+  it('calls the delete function on delete button click', async () => {
+    const deleteMutation = jest.fn();
+    (useOptimisticDeleteJob as jest.Mock).mockReturnValue({
+      mutate: deleteMutation,
+    });
+
+    render(
+      <Table>
+        <Table.Tbody>
+          <DataTableRow job={mockJob} index={0} />
+        </Table.Tbody>
+      </Table>
+    );
+
+    const deleteButton = screen.getByLabelText('Delete');
+    fireEvent.click(deleteButton);
+
+    expect(deleteMutation).toHaveBeenCalledWith(mockJob.id);
   });
 });

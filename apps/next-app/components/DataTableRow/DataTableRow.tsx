@@ -40,6 +40,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
       <Table.Td>
         <TextInput
           variant='unstyled'
+          name='company'
           placeholder='Enter a company name...'
           {...form.getInputProps('company')}
         />
@@ -47,6 +48,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
       <Table.Td>
         <TextInput
           variant='unstyled'
+          name='job_title'
           placeholder='Enter a job title...'
           {...form.getInputProps('job_title')}
         />
@@ -54,6 +56,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
       <Table.Td>
         <TextInput
           variant='unstyled'
+          name='hyperlink'
           placeholder='Enter a link...'
           {...form.getInputProps('hyperlink')}
         />
@@ -61,6 +64,7 @@ export const DataTableRow = ({ job, index, ...props }: DataTableRowProps) => {
       <Table.Td>
         <TextInput
           variant='unstyled'
+          name='status'
           placeholder='Enter a status...'
           {...form.getInputProps('status')}
         />

@@ -2,6 +2,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { render } from 'lib/testing/test-utils';
 import { DataTable } from './DataTable';
 import { COMPANIES, JOB_TITLES } from '@job-application-tracker/constants';
+import * as ReactQuery from 'react-query';
+
+jest.mock('react-query');
+jest
+  .spyOn(ReactQuery, 'useQuery')
+  .mockImplementation(jest.fn().mockReturnValue({ data: [], isLoading: false, isSuccess: true }));
 
 describe('DataTable', () => {
   it('should render successfully', () => {

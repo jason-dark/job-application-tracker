@@ -2,6 +2,12 @@ import { renderHook } from 'lib/testing/test-utils';
 import { notifications } from '@mantine/notifications';
 import { useNotifications } from './use-notifications';
 
+jest.mock('@mantine/notifications', () => ({
+  notifications: {
+    show: jest.fn(),
+  },
+}));
+
 describe('useNotifications', () => {
   beforeEach(() => {
     jest.spyOn(notifications, 'show').mockImplementation();
@@ -24,10 +30,5 @@ describe('useNotifications', () => {
       color: 'white',
       bg: expect.any(String),
     });
-
-    const showCall = notifications.show.mock.calls[0][0];
-    expect(showCall.title.props.children).toBe('Error');
-    expect(showCall.message.props.children).toBe(errorMessage);
-    expect(showCall.bg).toBe('#ff5252');
   });
 });

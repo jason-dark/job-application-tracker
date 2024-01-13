@@ -14,7 +14,6 @@
         "outputPath": "dist/apps/nest-api",
         "main": "apps/nest-api/src/main.ts",
         "tsConfig": "apps/nest-api/tsconfig.app.json",
-        "assets": ["apps/nest-api/src/assets"],
         "webpackConfig": "apps/nest-api/webpack.config.js"
       },
       "configurations": {

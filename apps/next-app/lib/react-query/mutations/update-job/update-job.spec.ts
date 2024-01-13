@@ -1,19 +1,23 @@
+import { UpdateJobPayload } from '@job-application-tracker/types';
 import { updateJob } from './update-job';
 import { AxiosClient } from 'lib/axios';
 
-jest.mock('lib/axios');
+jest.mock('lib/axios', () => ({
+  AxiosClient: { getInstance: jest.fn().mockReturnValue({ client: { patch: jest.fn() } }) },
+}));
 
 describe('updateJob', () => {
-  it('should call client.patch with the correct arguments', () => {
-    const job = { id: 'abc123', title: 'Software Engineer' };
-    const expectedUrl = '/jobs/update';
-    const expectedPayload = job;
+  it('should call client.patch with the provided job payload', async () => {
+    const jobPayload: UpdateJobPayload = {
+      id: 'abc123',
+      job_title: 'Software Engineer',
+      company: 'Acme Inc.',
+      hyperlink: 'https://www.acmeinc.com',
+      status: 'Rejected',
+    };
 
-    updateJob(job);
+    await updateJob(jobPayload);
 
-    expect(AxiosClient.getInstance().client.patch).toHaveBeenCalledWith(
-      expectedUrl,
-      expectedPayload
-    );
+    expect(AxiosClient.getInstance().client.patch).toHaveBeenCalledWith('/jobs/update', jobPayload);
   });
 });
