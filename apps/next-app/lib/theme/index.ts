@@ -4,8 +4,10 @@ import {
   Container,
   createTheme,
   DEFAULT_THEME,
+  Input,
   MantineBreakpointsValues,
   mergeMantineTheme,
+  rem,
 } from '@mantine/core';
 import { themeToVars } from '@mantine/vanilla-extract';
 
@@ -19,6 +21,13 @@ const themeOverride = createTheme({
     Container: Container.extend({
       defaultProps: {
         size: 'xl',
+      },
+    }),
+    Input: Input.extend({
+      styles: {
+        input: {
+          fontSize: rem(16),
+        },
       },
     }),
   },

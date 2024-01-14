@@ -28,7 +28,6 @@ export class DebouncedInvalidateCache {
    * @returns Debounced function that invalidates the specified query key.
    */
   private debounced = debounce((queryKey: QueryKey) => {
-    console.log('Invalidating now');
     queryClient.invalidateQueries({ queryKey });
   }, 4000);
 
