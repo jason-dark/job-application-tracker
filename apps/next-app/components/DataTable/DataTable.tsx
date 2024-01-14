@@ -33,7 +33,11 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
   const { css } = useStyles();
 
   return (
-    <Box data-testid='data-table' className={css({ overflowX: 'auto' })} {...props}>
+    <Box
+      data-testid='data-table'
+      className={css({ overflowX: 'auto', overflowY: 'hidden' })}
+      {...props}
+    >
       <Table miw={rem(1000)}>
         <Table.Thead>
           <Table.Tr>
