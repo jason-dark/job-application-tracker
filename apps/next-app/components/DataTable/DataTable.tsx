@@ -64,7 +64,7 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
         </Table.Tbody>
       </Table>
       {jobs.length === 0 ? (
-        <Card my='md' withBorder ta='center' py='xl'>
+        <Card my='md' withBorder ta='center' py='xl' pos='sticky' left={0} w='100%'>
           <Title order={4}>Add your first job!</Title>
           <Button
             rightSection={<IconCirclePlus style={{ height: rem(20) }} />}
@@ -81,7 +81,9 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
           my='md'
           onClick={createNewJob}
           variant='outline'
-          className={css({ position: 'sticky', left: 0, width: '100%' })}
+          pos='sticky'
+          left={0}
+          w='100%'
         >
           Add job
         </Button>
