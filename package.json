@@ -6,7 +6,7 @@
     "dev": "npx nx run-many --target=serve -p nest-api next-app --parallel=2",
     "test": "npx nx run-many --target=test --skip-nx-cache",
     "lint": "npx nx run-many --target=lint --fix",
-    "gen-types": "npx supabase gen types typescript --project-id wtlbjijlletmwrcmtfsi --schema public > libs/types/src/lib/supabase-gen.types.ts"
+    "gen-types": "env-cmd npx supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > libs/types/src/lib/supabase-gen.types.ts"
   },
   "private": true,
   "dependencies": {
@@ -68,6 +68,7 @@
     "@typescript-eslint/parser": "^6.9.1",
     "babel-jest": "^29.4.1",
     "bufferutil": "^4.0.8",
+    "env-cmd": "^10.1.0",
     "eslint": "~8.48.0",
     "eslint-config-next": "13.4.4",
     "eslint-config-prettier": "^9.0.0",
