@@ -123,6 +123,12 @@ job-application-tracker
 - Github actions run a workflow for checking linting and running tests on any push to `master` or PR onto `master` (see [/.github/workflows/ci.yml](/.github/workflows/ci.yml)).
 - Merges to master are blocked unless this workflow succeeds.
 
+## Todo
+
+- [x] Debounce calls to invalidate React Query cache when mutation are settled
+- [ ] Add unit test for NestJS `JobsService`
+- [ ] Implement an ORM to manage DB
+
 ## Authors
 
 - [@jason-dark](https://github.com/jason-dark)
