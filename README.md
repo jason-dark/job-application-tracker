@@ -12,40 +12,40 @@ Contributing to private repos over the years has left my public GitHub a bit emp
 
 ## Run Locally
 
+Check your version of node is compatible (must be **^18.13.0.11** || **^20.9.0**):
+
+```bash
+node -v
+```
+
 Clone the project:
 
 ```bash
-  git clone https://github.com/jason-dark/job-application-tracker.git
+git clone https://github.com/jason-dark/job-application-tracker.git
 ```
 
 Go to the project directory:
 
 ```bash
-  cd job-application-tracker
+cd job-application-tracker
 ```
 
 Configure environment variables ([contact me](https://www.linkedin.com/in/jason-dark/) and I can provide them):
 
 ```bash
-  mv .env.example .env
+mv .env.example .env
 ```
 
 Install dependencies:
 
 ```bash
-  yarn
-```
-
-To generate types from database structure, run the following command:
-
-```bash
-  yarn gen-types
+yarn
 ```
 
 Run the local Next.js and NestJS development servers:
 
 ```bash
-  yarn dev
+yarn dev
 ```
 
 ## Running Tests
@@ -53,13 +53,13 @@ Run the local Next.js and NestJS development servers:
 To run all tests, run the following command:
 
 ```bash
-  yarn test
+yarn test
 ```
 
 To run tests for a specific project, use this format:
 
 ```bash
-  npx nx test next-app
+npx nx test next-app
 ```
 
 ## Linting
@@ -67,14 +67,14 @@ To run tests for a specific project, use this format:
 To lint the entire project and auto fix errors, run the following command:
 
 ```bash
-  yarn lint
+yarn lint
 ```
 
 ## Project structure
 
 This project has been built within a Nx monorepo which contains two apps and three libraries:
 
-```bash
+```
 job-application-tracker
 ├─ apps
 │  ├─ nest-api ==> NestJS CRUD API
