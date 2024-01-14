@@ -1,4 +1,5 @@
 import { Job } from '@job-application-tracker/types';
+import { DebouncedInvalidateCache } from 'lib/react-query';
 import { JOBS } from 'lib/react-query/keys';
 import { updateJob } from 'lib/react-query/mutations';
 import { useMutation, useQueryClient } from 'react-query';
@@ -33,7 +34,8 @@ export const useOptimisticUpdateJob = () => {
       // Return a context object with the snapshotted value
       return { previousJobs };
     },
-    onSettled: () => queryClient.invalidateQueries({ queryKey: [JOBS] }),
+    // When settled, invalidate the cache to force a refetch from the server to ensure our cache is in sync
+    onSettled: () => DebouncedInvalidateCache.getInstance().invalidate([JOBS]),
     onError: (err, updatedJob, context) => {
       queryClient.setQueryData([JOBS], context?.previousJobs);
       notifyError('Sorry, something went wrong updating your job 😱');

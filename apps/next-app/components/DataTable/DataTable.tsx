@@ -78,7 +78,7 @@ export const DataTable = ({ jobs, ...props }: DataTableProps) => {
       ) : (
         <Button
           rightSection={<IconCirclePlus style={{ height: rem(20) }} />}
-          mt='md'
+          my='md'
           onClick={createNewJob}
           variant='outline'
           className={css({ position: 'sticky', left: 0, width: '100%' })}
